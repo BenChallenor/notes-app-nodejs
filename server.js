@@ -7,6 +7,10 @@ const app = express();
 
 const port = 3000;
 
+app.use(bodyParser.urlencoded({ extended: true }))
+
+require("./app/routes")(app, {});
+
 app.listen(port, function() {
   console.log("Listening on " + port);
 })
