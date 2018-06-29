@@ -16,6 +16,20 @@ module.exports = function(app, db) {
     });
   });
 
+  app.delete("/notes/:id", function(req, res) {
+    const id = req.params.id;
+    const details = {"_id": new ObjectID(id) };
+    db.collection('notes').remove(details, function(err, item) {
+      if (err) {
+        res.send({
+          'error': 'An error has occured'
+        });
+      } else {
+        res.send("Note " + id + " deleted");
+      }
+    });
+  });
+
   app.post('/notes', function(req, res) {
     // // note cteated here
     // console.log(req.body)
